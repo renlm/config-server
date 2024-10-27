@@ -1,0 +1,94 @@
+server:
+  port: 7001
+  shutdown: graceful
+encrypt:
+  keyStore:
+    location: classpath:keyStore.jks
+    password: letmein
+    alias: alias
+    secret: letmein
+logging:
+  level:
+    root: INFO
+    cn.renlm: INFO
+  file:
+    name: /opt/log/config-server.log
+  logback:
+    rollingpolicy:
+      maxFileSize: 512MB
+      maxHistory: 30
+management:
+  server:
+    port: 9001
+  metrics:
+    tags:
+      application: config-server
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        basePath: /actuator
+        include: health,shutdown,metrics,prometheus
+spring:
+  aop:
+    auto: false
+    proxyTargetClass: false
+  application:
+    name: config-server
+  main:
+    webApplicationType: SERVLET
+  profiles:
+    active: prod
+  security:
+    user:
+      name: default
+      password: 123654
+  cloud:
+    refresh:
+      enabled: false
+    config:
+      server:
+        git:
+          uri: git@gitee.com:renlm/ConfigRepo.git
+          forcePull: true
+          cloneOnStart: false
+          defaultLabel: master
+          search-paths: config/{profile}
+          ignoreLocalSshSettings: true
+          passphrase: 123654
+          privateKey: |-
+            -----BEGIN RSA PRIVATE KEY-----
+            Proc-Type: 4,ENCRYPTED
+            DEK-Info: AES-128-CBC,38372058900E081E03B7323C21C86372
+            
+            VIRhdrqFHC8IZ6/4XbgnzyCTf4S9c3ZkuOKOkeZkuPXJzJAJ2MpEdXfWIdAGLjuA
+            1a5gYVDYlxGRmEytoAJ+NGfip0/L1bUNiNJxoN/LTfDxPHnquXL8J8x0Qm2Y0tQq
+            UBzRzdaRzx/AT87xaGBQhucwH79Ds+HVwgZmk5naEHkRXJlEhnchPD5Dc4sMX9Sn
+            nKEKvHJraPN4Um99q+OyHZiYVg4rtzk0yAI3JlfyG1dlbZ0b6eDdNz11Cp7M8+nK
+            LS08/6TFNzEAlyJvH0TVknhGmA30wUIFE4lb2lVie020ouewqPgecGZq4oUreZtl
+            c/6P6VMTp/qawI5YOUHt9GMHPy73XrN5T54EZT+bvmzi2V3jNeAlDfcC+ZmgPKo+
+            LNdziBjLJ+55sfywfi6742LCzLEfFRzCGymHloGitOnPS9W/tpXYsnJmDxXWGOnE
+            hfqnS0fRaNWyLRUnot0s7vjxv10fB1kNn+Y2HBvHPW3mIFCCKhg1arR3D/Z0n6ts
+            x81qAqJ5PZZrQNhrIRwaDo5ZO8/JRfPRPeTgTcC0fFvik3yZW0JNyF17wheEkUS8
+            zBamuzS9HE0uTlDTX/J2X349TR/I8P9lALSqgL8iHSJ1dvGM3g7LlRvEZ6kXiuZ4
+            lgaQxEooUixFXzFYjk/CM0Kcq5Ic5ekjYvZR38nuIr3Wrpvm3BTkCwqOwwfTNSCe
+            RSsuOtUtkuxzsWgIObWstCrfgCDNiaGYjbv9eS4SdxPKsJO+yBUBY1A7vRce8dSn
+            OLsr11z9Q8XZaTHJ6LkkA5/Vir0lCGhNGWxo4apV7ub4nb1V9SxHQ8tcoYWuhAXn
+            PsqgvSdRDgzrf+b20aghCwX92gvEkXQ4wHg3mcC1yHG7BrgHFL88FPbdjZuyTfSF
+            IGa6wAxnkrBehNmUqPTmV6Gy/VUV8v0Yw50eX4svhi0G6KhQxj1yR1uoQtkUbetw
+            QAqLWdfI8swOwnhHH0+zPuva4QPmdJ9Z/lE2DTiu7K8W1aITBZPgYLnxaywa2vPU
+            eOpHv6M2g4l1tnCXEDoW6uH9tYimSQyesjNtg1+V9GGIaeyBktf7P9zCG90ztyQq
+            6M7oHYuzX+60v601mmNqFYBto+mHupxgNe7crzcrZRb6mF5CAGQ15Alt5pDqCIwf
+            hM+UNdjhs58vD2IRzjampMqPacOzcp02gNlTRUwBC8rVsuNbSOjr3ZslQDeRviky
+            /hzUUMbi8AKB//ycLdHOz77tbMjHTOxYsgAywsLwcvsV76B6Sl7ySu/s5tYOisZZ
+            3BiwzKmKAR1oHABMXcFgF+o9YuAJvTWZ8uvOxhdxqmZX+A0M0qQikE8f5s1tSp90
+            kAuE/ZfAyxFNyWjWUdmLWZ2pYSYlbXyRO+TNLuiQIZWDDi31oIPDJcDzgNIh8zLx
+            n2IeTQsjpIuAQmsi01Qm76EBVNU+bbEuDX7UWkqUzwkf2baE9ndp3MDyvA020j3+
+            8dIN/t/LxXzREQqIxquaIFiPlj8fUlw6skQTm+z2OFCqKjDO2S56b/r5QyCJ7sRl
+            KO5RUBFQ1952oI9auZXwBeDkkzv3ExDRgyUrthHaT/jUEW6rZpx7mHWydGY7TT1a
+            -----END RSA PRIVATE KEY-----
