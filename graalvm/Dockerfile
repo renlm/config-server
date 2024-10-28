@@ -1,10 +1,10 @@
-FROM ghcr.io/graalvm/jdk-community:21.0.2 as builder
+FROM ubuntu:22.04 as builder
 ADD . /build
 WORKDIR /build
 ARG PROFILES_ACTIVE
 ENV PROFILES_ACTIVE ${PROFILES_ACTIVE}
 RUN \
-  source ./graalvm/install.sh \
+  . ./graalvm/install.sh \
   && mvn clean -Pnative -P ${PROFILES_ACTIVE} native:compile
 
 FROM alpine

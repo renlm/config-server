@@ -1,4 +1,23 @@
 ## 配置中心（Graalvm）
+### Graalvm
+    https://github.com/graalvm/graalvm-ce-builds/releases
+    # 静态编译需要单独安装musl、zlib
+    https://www.graalvm.org/jdk21/reference-manual/native-image/guides/build-static-executables/
+	$ apt-get update
+	$ apt-get install -y build-essential zlib1g-dev maven
+	分割文件
+	$ split -b 50M graalvm-community-jdk-21.0.2_linux-x64_bin.tar.gz -d graalvm-community-jdk-21.0.2_linux-x64_bin.tar.gz_
+	合并文件
+	$ ls -ltrh
+	$ cat graalvm-community-jdk-21.0.2_linux-x64_bin.tar.gz_* > graalvm-community-jdk-21.0.2.tar.gz
+	解压文件
+	$ tar -zxvf graalvm-community-jdk-21.0.2.tar.gz -C /usr/local/ --transform="s/graalvm-community-openjdk-21.0.2+13.1/graalvm/g"
+	$ sed -i '$a export PATH=/usr/local/graalvm/bin:$PATH' ~/.bashrc
+	$ source ~/.bashrc
+	$ java --version
+	$ native-image --version
+	$ mvn --version
+
 ### Git
 	$ apt-update
 	$ apt-get install -y git
@@ -8,16 +27,11 @@
 	$ ssh-keygen -m PEM -t rsa -b 2048 -C "renlm@21cn.com" -N ""
 	$ cat ~/.ssh/id_rsa.pub
 
-### 下载代码
+### 输出编译配置
 	$ mkdir -p /root/native-image
 	$ cd /root/native-image
-	$ git clone git@gitee.com:renlm/config-server.git
-	$ docker pull ghcr-io.renlm.cn/graalvm/jdk-community:21.0.2
-	$ docker tag [ImageId] ghcr.io/graalvm/jdk-community:21.0.2
-	
-### 输出编译配置
-	$ export BUILD_IMAGE=ghcr.io/graalvm/jdk-community:21.0.2
-	$ docker run -it --rm --name graalvm-ce -p 7001:7001 -p 9001:9001 -v /root/.m2:/root/.m2 -v /root/native-image/config-server:/build $BUILD_IMAGE bash
+	$ git clone -b master --single-branch git@gitee.com:renlm/config-server.git
+	$ docker run -it --rm --name graalvm-ce -p 7001:7001 -p 9001:9001 -v /root/.m2:/root/.m2 -v /root/native-image/config-server:/build ubuntu:22.04 bash
 	bash-5.1# cd /build
 	bash-5.1# source ./graalvm/install.sh
 	

@@ -8,7 +8,8 @@ UPX_VERSION=4.2.4
 UPX_ARCHIVE=upx-${UPX_VERSION}-amd64_linux.tar.xz 
 
 tar -xJf graalvm/package/${UPX_ARCHIVE} -C .
-mv upx-${UPX_VERSION}-amd64_linux/upx .
+mv upx-${UPX_VERSION}-amd64_linux/upx /usr/bin
 rm -rf upx-${UPX_VERSION}-amd64_linux
-chmod +x upx
+rm -rf graalvm/package/${UPX_ARCHIVE}
+chmod +x /usr/bin/upx
 

@@ -2,15 +2,20 @@
 
 set +e
 
-# Xz
-# https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/index.html
-rpm -ivh graalvm/package/xz-5.2.5-8.el9_0.x86_64.rpm
+# Init
+sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
+sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+apt update
+apt install -y build-essential zlib1g-dev
+
+# Graalvm
+. ./graalvm/setup-graalvm.sh
 
 # Maven
-source ./graalvm/setup-maven.sh
+. ./graalvm/setup-maven.sh
 
 # Musl
-source ./graalvm/setup-musl.sh
+. ./graalvm/setup-musl.sh
 
 # Upx
-source ./graalvm/setup-upx.sh
+. ./graalvm/setup-upx.sh
