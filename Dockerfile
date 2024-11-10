@@ -1,19 +1,22 @@
 FROM ubuntu:22.04
 ADD . /build
 WORKDIR /build
-RUN . ./graalvm/install.sh
+ARG PROFILES_ACTIVE
+ENV PROFILES_ACTIVE ${PROFILES_ACTIVE}
+RUN --mount=type=cache,target=/root/.m2 \
+  . ./graalvm/install.sh \
+  && mvn clean -Pnative -P ${PROFILES_ACTIVE} native:compile
 
-FROM ubuntu:22.04
-WORKDIR /build
-RUN sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list \
-    && sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
-    && apt update \
-    && apt install -y build-essential zlib1g-dev
-COPY --from=0 "/usr/local/graalvm" /usr/local/graalvm
-COPY --from=0 "/usr/local/maven" /usr/local/maven
-COPY --from=0 "/usr/local/musl-toolchain" /usr/local/musl-toolchain
-COPY --from=0 "/usr/bin/upx" /usr/bin
-ENV GRAALVM_HOME=/usr/local/graalvm
-ENV MAVEN_HOME=/usr/local/maven
-ENV MUSL_HOME=/usr/local/musl-toolchain
-ENV PATH=$GRAALVM_HOME/bin:$MAVEN_HOME/bin:$MUSL_HOME/bin:$PATH
+FROM alpine
+COPY --from=0 "/build/target/config-server" server
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
+  && apk update \
+  && apk upgrade \
+  && apk --no-cache add tzdata curl \
+  && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+  && touch /server
+EXPOSE 7001
+EXPOSE 9001
+ARG PROFILES_ACTIVE
+ENV PROFILES_ACTIVE ${PROFILES_ACTIVE}
+ENTRYPOINT ["sh","-c","./server"]
