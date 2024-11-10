@@ -1,5 +1,5 @@
-## 配置中心（Graalvm）
-### Graalvm
+# 配置中心（Graalvm）
+## Graalvm
     https://github.com/graalvm/graalvm-ce-builds/releases
     # 静态编译需要单独安装musl、zlib
     https://www.graalvm.org/jdk21/reference-manual/native-image/guides/build-static-executables/
@@ -18,7 +18,7 @@
 	$ native-image --version
 	$ mvn --version
 
-### Git
+## Git
 	$ apt update
 	$ apt install -y git
 	$ git --version
@@ -29,7 +29,7 @@
 	$ git clone -b master --single-branch git@gitee.com:renlm/config-server.git
 	$ cd ./config-server
 	
-### 输出编译配置
+## 输出编译配置
 	$ docker run -it --rm -p 7001:7001 -v /root/.m2:/root/.m2 -v /root/config-server:/build ubuntu:22.04 bash
 	root@b4da32ed34ce:/# cd /build
 	root@b4da32ed34ce:/build# source ./graalvm/install.sh
@@ -58,21 +58,21 @@
 |       `-- serialization-config.json
 ```
 
-### Native Image
+## Native Image
 	$ docker build -t config-native-server:0.0.1 --build-arg PROFILES_ACTIVE=prod -f Dockerfile .
 	$ docker run -it --rm -p 7001:7001 -p 9001:9001 -e PROFILES_ACTIVE=dev config-native-server:0.0.1
 	
-### 手动推送镜像
+## 手动推送镜像
 	$ docker login --username=renlm@21cn.com registry.cn-hangzhou.aliyuncs.com
 	$ docker tag config-native-server:0.0.1 registry.cn-hangzhou.aliyuncs.com/rlm/config-native-server:0.0.1
 	$ docker push registry.cn-hangzhou.aliyuncs.com/rlm/config-native-server:0.0.1
 	
-### keyStore.jks
+## keyStore.jks
 	keypass 与 storepass 要相同
 	Warning:  Different store and key passwords not supported for PKCS12 KeyStores.
 	$ keytool -genkeypair -alias alias -keyalg RSA -validity 365 -dname "C=CN" -keypass letmein -keystore keyStore.jks -storepass letmein
 	
-### 请求配置
+## 请求配置
 	$ curl http://default:123654@localhost:7001/master/rabbitmq-dev.yaml
 	$ curl http://default:123654@localhost:7001/master/rabbitmq-prod.yaml
 	
