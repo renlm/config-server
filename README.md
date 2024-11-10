@@ -32,15 +32,16 @@
 ### 输出编译配置
 	$ docker run -it --rm -p 7001:7001 -v /root/.m2:/root/.m2 -v /root/config-server:/build ubuntu:22.04 bash
 	bash-5.1# cd /build
+	bash-5.1# source ./graalvm/install.sh
 	
 	静态编译
 	bash-5.1# mvn clean -Pnative -P dev native:compile
-	bash-5.1# ldd target/config
+	bash-5.1# ldd target/config-server
         not a dynamic executable
 	
 	测试覆盖
 	bash-5.1# mvn clean package -P dev
-	bash-5.1# java -agentlib:native-image-agent=config-output-dir=./output -jar target/config.jar
+	bash-5.1# java -agentlib:native-image-agent=config-output-dir=./output -jar target/config-server.jar
 	
 ```	
 将输出拷贝到resources/META-INF/native-image
@@ -71,14 +72,12 @@
 	Warning:  Different store and key passwords not supported for PKCS12 KeyStores.
 	$ keytool -genkeypair -alias alias -keyalg RSA -validity 365 -dname "C=CN" -keypass letmein -keystore keyStore.jks -storepass letmein
 	
-### 获取配置
+### 请求配置
 	$ curl http://default:123654@localhost:7001/master/rabbitmq-dev.yaml
 	$ curl http://default:123654@localhost:7001/master/rabbitmq-prod.yaml
 	
 	$ curl -X POST http://default:123654@localhost:7001/encrypt -s -d {明文}
 	$ curl -X POST http://default:123654@localhost:7001/decrypt -s -d {密文}
-	
-### 请求规则
 
 ```
 /{application}/{profile}[/{label}]
