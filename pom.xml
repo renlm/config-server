@@ -9,7 +9,7 @@
 		<version>3.2.7</version>
 		<relativePath />
 	</parent>
-	<groupId>cn.renlm</groupId>
+	<groupId>cn.renlm.micro</groupId>
 	<artifactId>config-server</artifactId>
 	<version>0.0.1</version>
 	<name>config-server</name>
