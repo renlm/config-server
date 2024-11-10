@@ -16,4 +16,4 @@ spring:
     - classpath:yaml/logging.yaml
     - classpath:yaml/security.yaml
     - classpath:yaml/server.yaml
-    - classpath:config.yaml
+    - classpath:git.yaml
