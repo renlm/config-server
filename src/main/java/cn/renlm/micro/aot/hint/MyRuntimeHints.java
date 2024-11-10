@@ -1,4 +1,4 @@
-package cn.renlm.GrmServer.aot.hint;
+package cn.renlm.micro.aot.hint;
 
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;

@@ -1,4 +1,4 @@
-package cn.renlm.GrmServer;
+package cn.renlm.micro;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-import cn.renlm.GrmServer.aot.hint.MyRuntimeHints;
+import cn.renlm.micro.aot.hint.MyRuntimeHints;
 
 /**
  * 配置中心
