@@ -73,11 +73,7 @@
   }, {
     "pattern":"\\Qbanner.txt\\E"
   }, {
-    "pattern":"\\Qcn/renlm/GrmServer/\\E"
-  }, {
-    "pattern":"\\Qconfig-dev.yaml\\E"
-  }, {
-    "pattern":"\\Qconfig.yaml\\E"
+    "pattern":"\\Qcn/renlm/micro/\\E"
   }, {
     "pattern":"\\Qconfig/application-dev.properties\\E"
   }, {
@@ -95,7 +91,11 @@
   }, {
     "pattern":"\\Qconfig/application.yml\\E"
   }, {
+    "pattern":"\\Qgit-dev.yaml\\E"
+  }, {
     "pattern":"\\Qgit.properties\\E"
+  }, {
+    "pattern":"\\Qgit.yaml\\E"
   }, {
     "pattern":"\\Qjndi.properties\\E"
   }, {

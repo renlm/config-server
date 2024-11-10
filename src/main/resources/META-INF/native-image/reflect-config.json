@@ -119,7 +119,7 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
-  "name":"cn.renlm.GrmServer.ConfigApplication",
+  "name":"cn.renlm.micro.ConfigApplication",
   "allDeclaredFields":true,
   "allDeclaredClasses":true,
   "queryAllDeclaredMethods":true,
@@ -127,7 +127,7 @@
   "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"main","parameterTypes":["java.lang.String[]"] }, {"name":"securityFilterChain","parameterTypes":["org.springframework.security.config.annotation.web.builders.HttpSecurity"] }, {"name":"setBeanFactory","parameterTypes":["org.springframework.beans.factory.BeanFactory"] }]
 },
 {
-  "name":"cn.renlm.GrmServer.ConfigApplication$$SpringCGLIB$$0",
+  "name":"cn.renlm.micro.ConfigApplication$$SpringCGLIB$$0",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
@@ -135,11 +135,11 @@
   "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"CGLIB$SET_STATIC_CALLBACKS","parameterTypes":["org.springframework.cglib.proxy.Callback[]"] }, {"name":"CGLIB$SET_THREAD_CALLBACKS","parameterTypes":["org.springframework.cglib.proxy.Callback[]"] }]
 },
 {
-  "name":"cn.renlm.GrmServer.ConfigApplication$$SpringCGLIB$$FastClass$$0",
+  "name":"cn.renlm.micro.ConfigApplication$$SpringCGLIB$$FastClass$$0",
   "methods":[{"name":"<init>","parameterTypes":["java.lang.Class"] }]
 },
 {
-  "name":"cn.renlm.GrmServer.ConfigApplication$$SpringCGLIB$$FastClass$$1",
+  "name":"cn.renlm.micro.ConfigApplication$$SpringCGLIB$$FastClass$$1",
   "methods":[{"name":"<init>","parameterTypes":["java.lang.Class"] }]
 },
 {
@@ -164,7 +164,7 @@
   "name":"com.fasterxml.jackson.core.ObjectCodec",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
-  "methods":[{"name":"getJsonFactory","parameterTypes":[] }, {"name":"readValues","parameterTypes":["com.fasterxml.jackson.core.JsonParser","com.fasterxml.jackson.core.type.ResolvedType"] }, {"name":"readValues","parameterTypes":["com.fasterxml.jackson.core.JsonParser","java.lang.Class"] }]
+  "methods":[{"name":"getJsonFactory","parameterTypes":[] }, {"name":"readValues","parameterTypes":["com.fasterxml.jackson.core.JsonParser","com.fasterxml.jackson.core.type.ResolvedType"] }, {"name":"readValues","parameterTypes":["com.fasterxml.jackson.core.JsonParser","com.fasterxml.jackson.core.type.TypeReference"] }, {"name":"readValues","parameterTypes":["com.fasterxml.jackson.core.JsonParser","java.lang.Class"] }]
 },
 {
   "name":"com.fasterxml.jackson.core.TreeCodec",
@@ -311,7 +311,9 @@
 },
 {
   "name":"com.sun.management.GcInfo",
-  "queryAllPublicMethods":true
+  "queryAllPublicMethods":true,
+  "fields":[{"name":"builder"}, {"name":"extAttributes"}],
+  "methods":[{"name":"getMemoryUsageBeforeGc","parameterTypes":[] }]
 },
 {
   "name":"com.sun.management.HotSpotDiagnosticMXBean",
@@ -526,6 +528,10 @@
   "methods":[{"name":"accept","parameterTypes":["io.micrometer.core.instrument.Meter$Id"] }, {"name":"close","parameterTypes":[] }, {"name":"configure","parameterTypes":["io.micrometer.core.instrument.Meter$Id","io.micrometer.core.instrument.distribution.DistributionStatisticConfig"] }, {"name":"shutdown","parameterTypes":[] }]
 },
 {
+  "name":"io.micrometer.core.instrument.distribution.TimeWindowMax",
+  "fields":[{"name":"rotating"}]
+},
+{
   "name":"io.micrometer.core.instrument.distribution.TimeWindowSum",
   "fields":[{"name":"rotating"}]
 },
@@ -734,7 +740,7 @@
   "name":"jakarta.servlet.Filter",
   "queryAllDeclaredMethods":true,
   "queryAllPublicMethods":true,
-  "methods":[{"name":"<init>","parameterTypes":["org.springframework.security.web.FilterChainProxy"] }, {"name":"<init>","parameterTypes":["org.springframework.web.servlet.handler.HandlerMappingIntrospector$$Lambda/0x00007f8c906c2d40"] }, {"name":"from","parameterTypes":["org.springframework.security.web.FilterChainProxy"] }, {"name":"from","parameterTypes":["org.springframework.web.servlet.handler.HandlerMappingIntrospector$$Lambda/0x00007f8c906c2d40"] }, {"name":"of","parameterTypes":["org.springframework.security.web.FilterChainProxy"] }, {"name":"of","parameterTypes":["org.springframework.web.servlet.handler.HandlerMappingIntrospector$$Lambda/0x00007f8c906c2d40"] }, {"name":"valueOf","parameterTypes":["org.springframework.security.web.FilterChainProxy"] }, {"name":"valueOf","parameterTypes":["org.springframework.web.servlet.handler.HandlerMappingIntrospector$$Lambda/0x00007f8c906c2d40"] }]
+  "methods":[{"name":"<init>","parameterTypes":["org.springframework.security.web.FilterChainProxy"] }, {"name":"<init>","parameterTypes":["org.springframework.web.servlet.handler.HandlerMappingIntrospector$$Lambda/0x00007ff0246c8000"] }, {"name":"from","parameterTypes":["org.springframework.security.web.FilterChainProxy"] }, {"name":"from","parameterTypes":["org.springframework.web.servlet.handler.HandlerMappingIntrospector$$Lambda/0x00007ff0246c8000"] }, {"name":"of","parameterTypes":["org.springframework.security.web.FilterChainProxy"] }, {"name":"of","parameterTypes":["org.springframework.web.servlet.handler.HandlerMappingIntrospector$$Lambda/0x00007ff0246c8000"] }, {"name":"valueOf","parameterTypes":["org.springframework.security.web.FilterChainProxy"] }, {"name":"valueOf","parameterTypes":["org.springframework.web.servlet.handler.HandlerMappingIntrospector$$Lambda/0x00007ff0246c8000"] }]
 },
 {
   "name":"jakarta.servlet.GenericFilter",
@@ -1051,7 +1057,8 @@
 },
 {
   "name":"java.lang.management.MemoryUsage",
-  "queryAllPublicMethods":true
+  "queryAllPublicMethods":true,
+  "methods":[{"name":"from","parameterTypes":["javax.management.openmbean.CompositeData"] }]
 },
 {
   "name":"java.lang.management.MonitorInfo",
@@ -2520,7 +2527,7 @@
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[{"name":"<init>","parameterTypes":[] }]
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"javaInfoContributor","parameterTypes":[] }, {"name":"osInfoContributor","parameterTypes":[] }]
 },
 {
   "name":"org.springframework.boot.actuate.autoconfigure.info.InfoContributorFallback"
@@ -3290,7 +3297,23 @@
   "queryAllPublicMethods":true
 },
 {
+  "name":"org.springframework.boot.actuate.info.InfoContributor",
+  "queryAllPublicMethods":true
+},
+{
   "name":"org.springframework.boot.actuate.info.InfoEndpoint",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"close","parameterTypes":[] }, {"name":"shutdown","parameterTypes":[] }]
+},
+{
+  "name":"org.springframework.boot.actuate.info.JavaInfoContributor",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"close","parameterTypes":[] }, {"name":"shutdown","parameterTypes":[] }]
+},
+{
+  "name":"org.springframework.boot.actuate.info.OsInfoContributor",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "methods":[{"name":"close","parameterTypes":[] }, {"name":"shutdown","parameterTypes":[] }]
@@ -5179,7 +5202,7 @@
   "name":"org.springframework.cloud.commons.config.DefaultsBindHandlerAdvisor$MappingsProvider",
   "queryAllDeclaredMethods":true,
   "queryAllPublicMethods":true,
-  "methods":[{"name":"<init>","parameterTypes":["org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration$$Lambda/0x00007f8c903e9dc8"] }, {"name":"from","parameterTypes":["org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration$$Lambda/0x00007f8c903e9dc8"] }, {"name":"of","parameterTypes":["org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration$$Lambda/0x00007f8c903e9dc8"] }, {"name":"valueOf","parameterTypes":["org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration$$Lambda/0x00007f8c903e9dc8"] }]
+  "methods":[{"name":"<init>","parameterTypes":["org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration$$Lambda/0x00007ff0243fda10"] }, {"name":"from","parameterTypes":["org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration$$Lambda/0x00007ff0243fda10"] }, {"name":"of","parameterTypes":["org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration$$Lambda/0x00007ff0243fda10"] }, {"name":"valueOf","parameterTypes":["org.springframework.cloud.client.loadbalancer.LoadBalancerDefaultMappingsProviderAutoConfiguration$$Lambda/0x00007ff0243fda10"] }]
 },
 {
   "name":"org.springframework.cloud.commons.security.ResourceServerTokenRelayAutoConfiguration",
